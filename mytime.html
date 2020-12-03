@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记录时间</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <style>
+        div {
+            margin: 200px;
+        }
+        
+        span {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+        }
+        
+        body {
+            background-image: url(https://wx1.sinaimg.cn/mw1024/0087n92Kly1glb0vasbhyj31eu0u0h3d.jpg);
+            background-color: #e5e5e5;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-position: 50% 20%;
+            background-size: 100%;
+        }
+        
+        .dv {
+            font-size: 18px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dv">
+        已经喜欢阿狗<span class="hour">1</span>月
+        <span class="minute">2</span>天
+        <span class="second">3</span>小时
+        <span class="secon">3</span>分钟
+        <span class="seco">3</span>秒
+    </div>
+    <script>
+        var hour = document.querySelector('.hour');
+        var minute = document.querySelector('.minute');
+        var second = document.querySelector('.second');
+        var secon = document.querySelector('.secon');
+        var seco = document.querySelector('.seco');
+        var inputTime = +new Date('2020-1-31 23:00');
+        countDown();
+        setInterval(countDown, 1000);
+
+        function countDown() {
+            var nowTime = +new Date(); // 返回的是当前时间总的毫秒数
+            var times = (nowTime - inputTime) / 1000; // times是剩余时间总的秒数 
+            var h = parseInt(times / 60 / 60 / 24 / 30); //月
+            h = h < 10 ? '0' + h : h;
+            hour.innerHTML = h; // 把剩余的小时给 小时黑色盒子
+            var m = parseInt(times / 60 / 60 / 24 % 30); // 日
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m;
+            var s = parseInt(times / 60 / 60 % 24); // 当前的时
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s;
+            var s1 = parseInt(times / 60 % 60); // 当前的分
+            s1 = s1 < 10 ? '0' + s1 : s1;
+            secon.innerHTML = s1;
+            var s2 = parseInt(times % 60); // 当前的秒
+            s2 = s2 < 10 ? '0' + s2 : s2;
+            seco.innerHTML = s2;
+            console.log(h);
+        }
+    </script>
+</body>
+
+</html>
